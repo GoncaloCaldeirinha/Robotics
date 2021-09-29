@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.82.0">
+  <title>Sistemas de Robótica</title>
+
+  <link rel="stylesheet" href="https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-1/js/tabs.js">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+  <!-- Bootstrap core CSS -->
+  <link href="./bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .tipo {
+      position: absolute;
+      right: 0.7em;
+      top: 0.7em;
+      padding: 0.4em;
+      color: #212529;
+      border: 2px solid #212529;
+      background-color:  #f8f9fa;
+      border-radius: 5px;
+      font-family: 'Serif', 'Times New Roman'; 
+    }
+
+    .card-text{      
+      font-family: Verdana; 
+    }
+
+
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .codigoComentado {
+      color: #228B22;
+    }
+  </style>
+
+
+</head>
+
+<body>
+
+  <header>
+    <div class="collapse bg-dark" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 py-4">
+            <h4 class="text-white">Acerca</h4>
+            <p class="text-muted">Isto é um projeto da Faculdade Autónoma de Lisboa para a cadeira de Sistemas de
+              Robótica dada pelo Professor Laércio Cruvinel.<br>Projeto realizado por: Daniel Ventura, Gonçalo
+              Caldeirinha, Rodrigo Gomes.<br><br>
+              Descarregar código do matlab <a href="./projetoRobotica.zip">aqui</a>!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2"
+            viewBox="0 0 24 24">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+            <circle cx="12" cy="13" r="4" />
+          </svg>
+          <strong>Sistemas de Robótica</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
+          aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-md-8 mx-auto ">
+          <h1 class="fw-light">Robôs</h1>
+          <p class="lead text-muted">O objetivo deste projeto é explicar de forma clara e concisa como utilizar os
+            seguintes robôs: Adept, Cobra600, 4DOF, standard_DH (<b>mdl_cobra600</b>) & Trossen Robotics, PhantomX
+            Pincher, 4DOF, standard_DH (<b>mdl_phantomx</b>)<br><br>
+            Clique nos seguintes botões para ver as características de cada um!
+          <p>
+          <div class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
+            <li class="nav-item">
+              <a class="btn btn-outline-dark active changeMontraButton" onclick="changeView('montraCobra', this);"
+                id="buttonChangeMontraCobra" style="cursor: pointer; margin-right: 1em;">Cobra600</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-outline-dark changeMontraButton" onclick="changeView('montraPhantom', this);"
+                id="buttonChangeMontraPhantom" style="cursor: pointer; margin-left: 2em;">PhantomX</a>
+            </li>
+          </div>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div id="montraCobra" class="montra w3-animate-opacity">
+          <p class="display-5 p-5 text-center">mdl_cobra600</p>
+
+          <!-- poses -->
+
+          <p class="display-6 p-5">Poses:</p>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">IMG</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/cobra600/fotos/qz.png">
+
+                <div class="card-body">
+                  <p class="card-text">Posição qz = [0 0 0 0];</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">IMG</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/cobra600/fotos/qr.png">
+
+                <div class="card-body">
+                  <p class="card-text">Posição qr = [pi/2 -pi/2 0 0];</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">IMG</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/cobra600/fotos/qs.png">
+
+                <div class="card-body">
+                  <p class="card-text">Posição qs = [0 -pi/2 0 0];</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">IMG</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/cobra600/fotos/qn.png">
+                <div class="card-body">
+                  <p class="card-text">Posição qn = [0 0 0.2 0];</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- animacoes -->
+
+          <p class="display-6 p-5" style="margin-top: 1em;">Animações:</p>
+
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">GIF</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/cobra600/gifs/qzToQr.gif">
+                <div class="card-body">
+                  <p class="card-text">Animação do qz para o qr, ou seja, animação das juntas da posição [0 0 0 0] para
+                    [pi/2 -pi/2 0 0].</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">GIF</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/cobra600/gifs/qzToQs.gif">
+                <div class="card-body">
+                  <p class="card-text">Animação do qz para o qs, ou seja, animação das juntas da posição [0 0 0 0] para
+                    [0 -pi/2 0 0].</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">GIF</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/cobra600/gifs/qzToQn.gif">
+                <div class="card-body">
+                  <p class="card-text">Animação do qz para o qn, ou seja, animação das juntas da posição [pi/2 -pi/2 0
+                    0] para [0 0 0.2 0].</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">GIF</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/cobra600/gifs/qrToQn.gif">
+                <div class="card-body">
+                  <p class="card-text">Animação do qr para o qn, ou seja, animação das juntas da posição [0 0 0 0] para
+                    [0 0 0.2 0].</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GUI -->
+
+          <p class="display-6 p-5" style="margin-top: 1em;">GUI:</p>
+
+          <div class="row row-cols-12">
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">GIF</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/cobra600/gifs/GUI.gif">
+
+                <div class="card-body">
+                  <p class="card-text">Usando a função <em>teach</em> para mostrar um GUI, sendo que com este podemos
+                    alterar as posições das juntas do robô
+                    da forma que quisermos, começando na posição qz.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DH -->
+
+          <p class="display-6 p-5" style="margin-top: 1em;">Parâmetros de Denavit-Hartenberg, fkine e ikine</p>
+
+          <div class="row row-cols-1 row-cols-sm-2 g-2">
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">IMG</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/cobra600/fotos/ph.png">
+
+                <div class="card-body">
+                  <p class="card-text">Os parâmetros de Denavit–Hartenberg (também chamados de parâmetros DH) são quatro
+                    parâmetros associados a uma convenção para fixar sistemas de
+                    referência aos elos de uma cadeia cinemática espacial, ou manipulador robótico:<br>
+                    <lu>
+                      <li><b>theta:</b> ângulo em torno do z anterior, do x anterior até o x.</li>
+                      <li><b>d:</b> distância ao longo do z anterior até a normal comum.</li>
+                      <li><b>a:</b> comprimento da normal comum. No caso de uma junta rotacional, este é o raio ao redor
+                        do z anterior.</li>
+                      <li><b>alpha:</b> ângulo em torno da normal comum, do z anterior ao z novo.</li>
+                    </lu><br>
+                    Neste caso como as juntas 1, 2 e 4 são de rotação, no <b>theta</b> aparecem os q1, q2 e q4
+                    referindo-se a cada uma delas.
+                    E como a junta 3 é de translação, aparece no <b>d</b>.<br><br>
+
+                    No <b>a</b> existem valores na junta 1 e 2, que é o raio ao redor do z anterior. A junta 3 não
+                    possui valor pois é de translação vertical e a junta 4 tem 0 de distância relativamente à junta
+                    anterior.<br><br>
+
+                    Relativamente ao <b>alpha</b> podemos confirmar que apenas a junta 2 tem ângulo em torno da normal
+                    comum, do z anterior ao novo z.
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">IMG</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/cobra600/fotos/fkine_qs.PNG">
+
+                <div class="card-body">
+                  <p class="card-text">Usando a função <em>fkine</em> da pose <b>qs</b> para ir buscar a transformação
+                    homogênea que representa a pose.
+                    É a pose do efetor final do robô como uma transformação homogênea SE (3) (4x4) para a configuração
+                    conjunta q (1xN).
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div><br>
+              <div class="card shadow-sm" style="margin-top: -1em;">
+                <span class="tipo">IMG</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/cobra600/fotos/ikine_T.PNG">
+
+                <div class="card-body">
+                  <p class="card-text">A função <em>ikine</em> são as coordenadas conjuntas (1 x N) correspondentes à
+                    pose do efetor final do robô T (4x4), que é uma transformação homogênea.<br>
+                    Atenção que estes podem ou não ser iguais aos que foram definidos quando o robô foi criado.<br>
+                    Neste caso usamos o <b>T</b> definido em cima como parâmetro desta função.
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <p class="display-6 p-5" style="margin-top: 1em;">Código:</p>
+
+
+          <div class="row row-cols-md-12">
+            <div class="col">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <code>
+                  <span class = "codigoComentado">%Criar os links</span><br>
+                  links = [<br>
+                  &emsp;Revolute('d', 0.387, 'a', 0.325, 'qlim', [-50 50]*pi/180);<br>
+                  &emsp;Revolute('a', 0.275, 'alpha', pi, 'qlim', [-88 88]*pi/180);<br>
+                  &emsp;Prismatic('qlim', [0 0.210]);<br>
+                  &emsp;Revolute()<br>
+                  ];<br><br>
+                  <span class = "codigoComentado">%Criar o robô</span><br>
+                  c600 = SerialLink(links, 'name', 'Cobra600', 'manufacturer', 'Adept', 'plotopt', {'workspace', [0 0.8 -0.6 0.6 0 0.4]} );<br><br>
+
+                  <span class = "codigoComentado">%Criar as poses<br>
+                  %o primeiro parâmetro é de rotação para a primeira junta<br>
+                  %o segundo parâmetro é de rotação para a segunda junta<br>
+                  %o terceiro parâmetro é de translação para a ultima junta (que seria a pega)<br>
+                  %o ultimo parâmetro é de rotação para a ultima junta<br></span>
+                  qz = [0 0 0 0];<br>
+                  qr = [pi/2 -pi/2 0 0];<br>
+                  qs = [0 -pi/2 0 0];<br>
+                  qn = [0 0 0.2 0];<br><br>
+
+                  <span class = "codigoComentado">%mostrar qz</span><br>
+                  c600.plot(qz)<br><br>
+
+                  <span class = "codigoComentado">%Criar animações</span><br>
+                  qzr = jtraj(qz,qr,50);<br>
+                  qzs = jtraj(qz,qs,50);<br>
+                  qzn = jtraj(qz,qn,50);<br>
+                  qrn = jtraj(qr,qn,50);<br><br>
+
+                  <span class = "codigoComentado">%Mostrar animação do qz para o qr</span><br>
+                  c600.plot(qzr)<br><br>
+
+                  <span class = "codigoComentado">%Criar GUI para mexer no robô a partir da pose qz</span><br>
+                  c600.teach(qz);<br><br>
+
+                  <span class = "codigoComentado">%mostrar os parâmetros DH</span><br>
+                  c600<br><br>
+                  
+                  <span class = "codigoComentado">%ir buscar a transformação homogênea que representa a pose</span><br>
+                  T = c600.fkine(qs)<br><br>
+
+
+                  <span class = "codigoComentado">%a função ikine</span><br>
+                  c600.ikine(T, 'mask', [1 1 1 1 0 0])<br><br>
+
+                  <span class = "codigoComentado">%a função tic e toc serve para saber o intervalo de tempo que dura para que<br>
+                  %o matlab faça um determinado calculo.</span><br>
+                  tic; c600.ikine(T, 'mask', [1 1 1 1 0 0]); toc<br><br>
+
+
+                  <br>
+                  </code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- phantom -->
+        <div id="montraPhantom" class="montra w3-animate-opacity" style="display: none;">
+          <p class="display-5 p-5 text-center">mdl_phantomx</p>
+          <p class="display-6 p-5">Poses:</p>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">IMG</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/phantomX/fotos/qz.png">
+
+                <div class="card-body">
+                  <p class="card-text">Posição qn = [0 0 0 0];</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">IMG</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/phantomX/fotos/qr.png">
+
+                <div class="card-body">
+                  <p class="card-text">Posição qr = [pi pi/2 -pi/2 0];</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">IMG</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/phantomX/fotos/qs.png">
+
+                <div class="card-body">
+                  <p class="card-text">Posição qs = [0 0 -pi/2 0];</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">IMG</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/phantomX/fotos/qn.png">
+
+                <div class="card-body">
+                  <p class="card-text">Posição qn = [pi pi/2 0 pi/4];</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- animacoes -->
+
+          <p class="display-6 p-5" style="margin-top: 1em;">Animações:</p>
+
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">GIF</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/phantomX/gifs/qzToQr.gif">
+
+                <div class="card-body">
+                  <p class="card-text">Animação do qz para o qr, ou seja, animação das juntas da posição [0 0 0 0] para
+                    [pi pi/2 -pi/2 0].</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">GIF</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/phantomX/gifs/qzToQs.gif">
+
+                <div class="card-body">
+                  <p class="card-text">Animação do qz para o qs, ou seja, animação das juntas da posição [0 0 0 0] para
+                    [0 0 -pi/2 0].</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">GIF</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/phantomX/gifs/qzToQn.gif">
+
+                <div class="card-body">
+                  <p class="card-text">Animação do qz para o qn, ou seja, animação das juntas da posição [0 0 0 0] para
+                    [pi pi/2 0 pi/4].</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">GIF</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/phantomX/gifs/qsToQr.gif">
+
+                <div class="card-body">
+                  <p class="card-text">Animação do qs para o qr, ou seja, animação das juntas da posição [0 0 -pi/2 0]
+                    para [pi pi/2 -pi/2 0].</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GUI -->
+
+          <p class="display-6 p-5" style="margin-top: 1em;">GUI:</p>
+
+          <div class="row row-cols-12">
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">GIF</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/phantomX/gifs/GUI.gif">
+
+                <div class="card-body">
+                  <p class="card-text">Usando a função <em>teach</em> para mostrar um GUI, sendo que com este podemos
+                    alterar as posições das juntas do robô
+                    da forma que quisermos, começando na posição qz.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <!-- DH -->
+
+          <p class="display-6 p-5" style="margin-top: 1em;">Parâmetros de Denavit-Hartenberg, fkine e ikine:</p>
+
+          <div class="row row-cols-1 row-cols-sm-2 g-2">
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">IMG</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/phantomX/fotos/ph.png">
+
+                <div class="card-body">
+                  <p class="card-text">Os parâmetros de Denavit–Hartenberg (também chamados de parâmetros DH) são quatro
+                    parâmetros associados a uma convenção para fixar sistemas de
+                    referência aos elos de uma cadeia cinemática espacial, ou manipulador robótico:<br>
+                    <lu>
+                      <li><b>theta:</b> ângulo em torno do z anterior, do x anterior até o x.</li>
+                      <li><b>d:</b> distância ao longo do z anterior até a normal comum.</li>
+                      <li><b>a:</b> comprimento da normal comum. No caso de uma junta rotacional, este é o raio ao redor
+                        do z anterior.</li>
+                      <li><b>alpha:</b> ângulo em torno da normal comum, do z anterior ao z novo.</li>
+                    </lu><br>
+                    Neste caso como todas as juntas são de rotação, no <b>theta</b> aparecem os q1, q2, q3 e q4
+                    referindo-se a cada uma delas.
+                    Como não existem juntas de translação, o <b>d</b> aparece vazio.<br><br>
+
+                    No <b>a</b> existem valores na junta 2, 3 e 4 que são, consequentemente, o raio ao redor do z
+                    anterior. Os valores estão negativos pois em vez de se afastarem, aproximam-se.
+                    Na junta 1 não tem comprimento da normal comum.<br><br>
+
+                    Relativamente ao <b>alpha</b> podemos confirmar que apenas as juntas 1 e 2 têm ângulo em torno da
+                    normal comum, do z anterior ao novo z.
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card shadow-sm">
+                <span class="tipo">IMG</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/phantomX/fotos/fkine_qs.PNG">
+
+                <div class="card-body">
+                  <p class="card-text">Usando a função <em>fkine</em> da pose <b>qs</b> para ir buscar a transformação
+                    homogênea que representa a pose.
+                    É a pose do efetor final do robô como uma transformação homogênea SE (3) (4x4) para a configuração
+                    conjunta q (1xN).
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div><br>
+              <div class="card shadow-sm" style="margin-top: -1em;">
+                <span class="tipo">IMG</span>
+                <img class="bd-placeholder-img card-img-top" src="./img/phantomX/fotos/ikine_T.PNG">
+
+                <div class="card-body">
+                  <p class="card-text">A função <em>ikine</em> são as coordenadas conjuntas (1 x N) correspondentes à
+                    pose do efetor final do robô T (4x4), que é uma transformação homogênea.<br>
+                    Atenção que estes podem ou não ser iguais aos que foram definidos quando o robô foi criado.<br>
+                    Neste caso usamos o <b>T</b> definido em cima como parâmetro desta função.
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-up"></i></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i onclick="changeLike(this);"
+                          class="far fa-thumbs-down"></i></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="display-6 p-5" style="margin-top: 1em;">Código:</p>
+
+
+          <div class="row row-cols-md-12">
+            <div class="col">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <code>
+                  <span class = "codigoComentado">%Criar os links</span><br>
+                  links = [<br>
+                  &emsp;Revolute('d', 40, 'alpha', -pi/2)<br>
+                  &emsp;Revolute('a', -105, 'alpha', pi, 'offset', pi/2)<br>
+                  &emsp;Revolute('a', -105)<br>
+                  &emsp;Revolute('a', -105)<br>
+                  ];<br><br>
+                  <span class = "codigoComentado">%Criar o robô</span><br>
+                  px = SerialLink(links, 'name', 'PhantomX', 'manufacturer', 'Trossen Robotics', 'plotopt', {'tilesize', 50});<br><br>
+
+                  <span class = "codigoComentado">%Criar as poses<br>
+                  %o primeiro parâmetro é de rotação sobre a primeira junta<br>
+                  %o segundo parâmetro é de rotação sobre a segunda junta<br>
+                  %o terceiro parâmetro é de rotacao sobre a terceira junta<br>
+                  %o quarto parâmetro é de rotacao sobre a quarta junta<br></span>
+                  qz = [0 0 0 0];<br>
+                  qr = [pi pi/2 -pi/2 0];<br>
+                  qs = [0 0 -pi/2 0];<br>
+                  qn = [pi pi/2 0 pi/4];<br><br>
+
+                  <span class = "codigoComentado">%Rodar o ultimo link para ficar de acordo com o robô.</span><br>
+                  px.tool = trotz(-pi/2) * trotx(pi/2);<br><br>
+
+                  <span class = "codigoComentado">%mostrar qz</span><br>
+                  px.plot(qz)<br><br>
+
+                  <span class = "codigoComentado">%Criar animações</span><br>
+                  qzr = jtraj(qz,qr,50);<br>
+                  qzs = jtraj(qz,qs,50);<br>
+                  qzn = jtraj(qz,qn,50);<br>
+                  qsr = jtraj(qs,qr,50);<br><br>
+
+                  <span class = "codigoComentado">%Mostrar animação do qz para o qr</span><br>
+                  px.plot(qzr)<br><br>
+
+                  <span class = "codigoComentado">%Criar GUI para mexer no robô a partir da pose qz</span><br>
+                  px.teach(qz);<br><br>
+
+                  <span class = "codigoComentado">%mostrar os parâmetros DH</span><br>
+                  px<br><br>                  
+                  
+                  <span class = "codigoComentado">%ir buscar a transformação homogênea que representa a pose</span><br>
+                  T = px.fkine(qs)<br><br>
+
+
+                  <span class = "codigoComentado">%a função ikine</span><br>
+                  px.ikine(T, 'mask', [1 1 1 1 0 0])<br><br>
+
+                  <span class = "codigoComentado">%a função tic e toc serve para saber o intervalo de tempo que dura para que<br>
+                  %o matlab faça um determinado calculo.</span><br>
+                  tic; px.ikine(T, 'mask', [1 1 1 1 0 0]); toc<br><br>
+
+
+                  <br>
+                </code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="text-light bg-dark py-5">
+    <div class="container">
+      <p class="float-end mb-1">
+        <a href="#" class="text-light"><i class="fas fa-arrow-up"></i></a>
+      </p>
+      <p class="mb-1">Feito por: Daniel Ventura, Gonçalo Caldeirinha e Rodrigo Gomes</p>
+    </div>
+  </footer>
+
+
+  <script src="./bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+
+    const montraCobra = document.getElementById("montraCobra");
+    const montraPhantom = document.getElementById("montraPhantom");
+
+    function changeView(montra, tag) {
+      const id = tag.id;
+      openLink(montra, "montra");
+      changeActive(id, "changeMontraButton");
+    }
+
+
+    function openLink(linkToOpen, className) {
+      let i;
+      const x = document.getElementsByClassName(className);
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      document.getElementById(linkToOpen).style.display = "block";
+    }
+
+    function changeActive(navToOpen, className) {
+      let i;
+      const x = document.getElementsByClassName(className);
+      for (i = 0; i < x.length; i++) {
+        x[i].classList.remove("active");
+      }
+      document.getElementById(navToOpen).classList.add("active");
+    }
+
+    function changeLike(tag) {
+      if (tag.classList.contains('far')) {
+        tag.classList.remove('far');
+        tag.classList.add('fas');
+      } else if (tag.classList.contains('fas')) {
+        tag.classList.add('far');
+        tag.classList.remove('fas');
+      }
+    }
+
+  </script>
+
+</body>
+
+</html>
